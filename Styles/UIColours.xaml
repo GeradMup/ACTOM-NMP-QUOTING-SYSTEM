@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--Background Colours-->
+	<Color x:Key="primaryBackColour1">#FFFFFF</Color>
+	<Color x:Key="primaryBackColour2">#1C0E49</Color>
+	<Color x:Key="secondaryBackColour1">#CAE1CB</Color>
+	<Color x:Key="secondaryBackColour2">#210F55</Color>
+	
+	<!-- Window Border Colours-->
+	<Color x:Key="winBorderColour1">#006CB7</Color>
+	<Color x:Key="winBorderColour2">#1E4AE2</Color>
+	<Color x:Key="winBorderColour3">#006CB7</Color>
+	
+	<!-- Program Colours-->
+	<SolidColorBrush x:Key="colour1" Color="#FFFFFF"/>
+	<SolidColorBrush x:Key="colour2" Color="#784DFD"/>
+	<SolidColorBrush x:Key="colour3" Color="#4ADAEC"/>
+	<SolidColorBrush x:Key="colour4" Color="#FB539B"/>
+	<SolidColorBrush x:Key="colour5" Color="#7E82FC"/>
+	<SolidColorBrush x:Key="colour6" Color="#FFC047"/>
+	<SolidColorBrush x:Key="colour7" Color="#EF6C96"/>
+	<SolidColorBrush x:Key="colour8" Color="#78A3FC"/>
+	<SolidColorBrush x:Key="colour9" Color="#07F3C0"/>
+	<SolidColorBrush x:Key="colour10" Color="#FBA1AA"/>
+	
+	<!-- Font Colours -->
+	<SolidColorBrush x:Key="titleColour1" Color="#006CB7"/>
+	<SolidColorBrush x:Key="titleColour2" Color="#FFFFFF"/>
+	<SolidColorBrush x:Key="titleColour3" Color="#BCCEE0"/>
+	<SolidColorBrush x:Key="plainTextColour0" Color="#FFFFFF"/>
+	<SolidColorBrush x:Key="plainTextColour1" Color="#000000"/>
+	<SolidColorBrush x:Key="plainTextColour2" Color="#006CB7"/>
+	<SolidColorBrush x:Key="plainTextColour3" Color="#19D022"/>
+	
+	<!--Panel Colours-->
+	<SolidColorBrush x:Key="panelColour" Color="#7376BD"/>
+	<SolidColorBrush x:Key="panelOverColour" Color="#7376BD"/>
+	<SolidColorBrush x:Key="panelActiveColour" Color="#7376BD"/>
+	
+	<!--Button Colours-->
+	<SolidColorBrush x:Key="buttonColour1" Color="#006CB7"/>
+	<SolidColorBrush x:Key="buttonColour2" Color="#19D022"/>
+	<SolidColorBrush x:Key="buttonColour3" Color="#000000"/>
+	<SolidColorBrush x:Key="buttonColour1Hover" Color="#1E33E5"/>
+
+</ResourceDictionary>

@@ -1,0 +1,84 @@
+﻿<Window x:Class="NMP_Quoting_System.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NMP_Quoting_System"
+		xmlns:viewModel="clr-namespace:NMP_Quoting_System.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+		Height="600" 
+		Width="1000"
+		WindowStartupLocation="CenterScreen"
+		WindowStyle="None"
+		Background="Transparent"
+		AllowsTransparency="True">
+
+	
+	<Window.DataContext>
+		<viewModel:MainViewModel/>
+	</Window.DataContext>
+	
+	
+	<!--Here we define the main border for the whole page-->
+	<Border CornerRadius="100"
+			BorderThickness="1">
+
+		<Border.BorderBrush>
+			<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+				<GradientStop Color="{StaticResource winBorderColour1}" Offset="0.0"/>
+				<GradientStop Color="{StaticResource winBorderColour2}" Offset="0.5"/>
+				<GradientStop Color="{StaticResource winBorderColour3}" Offset="1.0"/>
+			</LinearGradientBrush>
+		</Border.BorderBrush>
+	
+
+		<Grid Background="{StaticResource colour1}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1.5*"/>
+				<RowDefinition Height="5*"/>
+				<RowDefinition Height="70"/>
+			</Grid.RowDefinitions>
+			
+			<!---->
+			<Border CornerRadius="100,100,0,0" Grid.Row="0"/>
+			<!--Here we define the main page title-->
+			<TextBlock Grid.Row="0" 
+					   Text="ACTOM NMP QUOTING SYSTEM" 
+					   HorizontalAlignment="Center" VerticalAlignment="Center"
+					   FontSize="50"
+					   FontWeight="Bold"
+					   FontStyle="Normal"
+					   FontFamily="Calibri"
+					   Foreground="{StaticResource plainTextColour2}"
+					   />
+
+			<!--Stack panel to house all the navigation buttons on the main page-->
+			<StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Button Style="{StaticResource menuButton}">
+					<TextBlock Style="{StaticResource buttonText}" Text="GEARBOX"/>
+				</Button>
+				
+				<Button Style="{StaticResource menuButton}">
+					<TextBlock Style="{StaticResource buttonText}" Text="MOTOR"/>
+				</Button>
+
+				<Button Style="{StaticResource menuButton}">
+					<TextBlock Style="{StaticResource buttonText}" Text="MOTOR + GEARBOX"/>
+				</Button>
+
+			</StackPanel>
+			
+			<!--This places the Logo at the bottom of the screen-->
+			<Image Grid.Row="2" 
+				   Source="/Images/Actom Logo.png"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Bottom"
+				   />
+		</Grid>
+		
+		
+
+	</Border>
+	
+</Window>
