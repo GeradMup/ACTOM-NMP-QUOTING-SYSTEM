@@ -11,10 +11,12 @@
 		Width="1000"
 		WindowStartupLocation="CenterScreen"
 		WindowStyle="None"
+		ResizeMode="CanResize"
 		Background="Transparent"
-		AllowsTransparency="True">
+		AllowsTransparency="True"
+		SizeChanged="Window_SizeChanged">
 
-	
+
 	<Window.DataContext>
 		<viewModel:MainViewModel/>
 	</Window.DataContext>
@@ -22,7 +24,8 @@
 	
 	<!--Here we define the main border for the whole page-->
 	<Border CornerRadius="100"
-			BorderThickness="1">
+			BorderThickness="1"
+			Background="Transparent">
 
 		<Border.BorderBrush>
 			<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -35,15 +38,25 @@
 
 		<Grid Background="{StaticResource colour1}">
 			<Grid.RowDefinitions>
+				<RowDefinition Height="20"/>
 				<RowDefinition Height="1.5*"/>
 				<RowDefinition Height="5*"/>
-				<RowDefinition Height="70"/>
+				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
 			
-			<!---->
-			<Border CornerRadius="100,100,0,0" Grid.Row="0"/>
+			<!--Here we add all the controls that will allow the app to behave like a normal windows app-->
+			<!--Control Bar-->
+
+			<StackPanel Grid.Row="0" x:Name="pnlControlBar"
+						Orientation="Horizontal"
+						FlowDirection="RightToLeft"
+						Margin="5,0,5,0"
+						MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+						Background="Transparent"/>
+
+
 			<!--Here we define the main page title-->
-			<TextBlock Grid.Row="0" 
+			<TextBlock Grid.Row="1" 
 					   Text="ACTOM NMP QUOTING SYSTEM" 
 					   HorizontalAlignment="Center" VerticalAlignment="Center"
 					   FontSize="50"
@@ -54,7 +67,7 @@
 					   />
 
 			<!--Stack panel to house all the navigation buttons on the main page-->
-			<StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
 				<Button Style="{StaticResource menuButton}">
 					<TextBlock Style="{StaticResource buttonText}" Text="GEARBOX"/>
 				</Button>
@@ -68,13 +81,18 @@
 				</Button>
 
 			</StackPanel>
-			
-			<!--This places the Logo at the bottom of the screen-->
-			<Image Grid.Row="2" 
+
+			<StackPanel x:Name="logoPanel" Grid.Row="3" 
+						VerticalAlignment="Bottom" HorizontalAlignment="Center"
+						>
+				<!--This places the Logo at the bottom of the screen-->
+				<Image x:Name="logoImage" 
 				   Source="/Images/Actom Logo.png"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Bottom"
-				   />
+				   Margin="0,0,0,2"/>
+			</StackPanel>
+
 		</Grid>
 		
 		

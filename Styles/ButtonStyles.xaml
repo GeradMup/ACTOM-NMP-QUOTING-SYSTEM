@@ -13,7 +13,7 @@
 				<ControlTemplate TargetType="Button">
 					<Border Background="{TemplateBinding Background}"
 							BorderThickness="1, 1, 1, 1"
-							Margin="0, 30, 0, 30"
+							Margin="0, 25, 0, 25"
 							BorderBrush="{TemplateBinding BorderBrush}"
 							CornerRadius="10">
 							
