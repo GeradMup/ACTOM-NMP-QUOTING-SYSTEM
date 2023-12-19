@@ -6,7 +6,7 @@
 		xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:NMP_Quoting_System"
 		xmlns:viewModel="clr-namespace:NMP_Quoting_System.ViewModels"
-        mc:Ignorable="d"
+		mc:Ignorable="d"
         Title="MainWindow" 
 		Height="600" 
 		Width="1000"
@@ -17,11 +17,13 @@
 		AllowsTransparency="True"
 		SizeChanged="Window_SizeChanged">
 
-
-	<Window.DataContext>
-		<viewModel:MainViewModel/>
-	</Window.DataContext>
-
+<!--
+		<Window.DataContext>
+			<viewModel:MainViewModel/>
+		</Window.DataContext>
+-->
+	
+	
 	<!--Here we define the main border for the whole page-->
 	<Border CornerRadius="1"
 			BorderThickness="3"
@@ -75,9 +77,9 @@
 			<!--###########################################################################################-->
 			<!--THIS SECTION WILL BE USED TO DEFINE ALL THE CHILD VIEWS THAT WILL GO ON THE PAGE-->
 
-			<ContentControl Content="{Binding SelectedViewModel}"
+			<ContentControl Content="{Binding Navigation.CurrentViewModel}"
 							Grid.Row="1"
-							Margin="5"/>
+							Margin="2"/>
 
 			<!--THIS SECTION WILL BE USED TO DEFINE ALL THE CHILD VIEWS THAT WILL GO ON THE PAGE-->
 			<!--###########################################################################################-->

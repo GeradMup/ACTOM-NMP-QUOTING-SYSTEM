@@ -26,9 +26,6 @@ namespace NMP_Quoting_System
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.logoPanel.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
-
-            DataContext = new MainViewModel();
-
         }
 
 

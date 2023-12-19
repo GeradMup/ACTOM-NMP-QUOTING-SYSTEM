@@ -4,10 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NMP_Quoting_System.Views"
-             mc:Ignorable="d" 
+			 xmlns:viewmodels="clr-namespace:NMP_Quoting_System.ViewModels"
+			 mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-			 Background="Transparent">
-    <Grid>
+			 Background="White">
+
+	<!--
+		<UserControl.DataContext>
+			<viewmodels:NavigationViewModel/>
+		</UserControl.DataContext>
+	-->
+	
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="0.5*"/>
 			<RowDefinition Height="3*"/>
@@ -26,15 +34,15 @@
 
 		<!--Stack panel to house all the navigation buttons on the main page-->
 		<StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-			<Button Style="{StaticResource menuButton}">
+			<Button Style="{StaticResource menuButton}" Command="{Binding GearboxBtnCommand}">
 				<TextBlock Style="{StaticResource buttonText}" Text="GEARBOX"/>
 			</Button>
 
-			<Button Style="{StaticResource menuButton}">
+			<Button Style="{StaticResource menuButton}" Command="{Binding MotorBtnCommand}">
 				<TextBlock Style="{StaticResource buttonText}" Text="MOTOR"/>
 			</Button>
 
-			<Button Style="{StaticResource menuButton}">
+			<Button Style="{StaticResource menuButton}" Command="{Binding MotorPlusGearboxBtnCommand}">
 				<TextBlock Style="{StaticResource buttonText}" Text="MOTOR + GEARBOX"/>
 			</Button>
 
