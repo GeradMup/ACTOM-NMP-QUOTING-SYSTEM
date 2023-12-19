@@ -12,6 +12,7 @@ using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Net.Http.Headers;
 using System.Windows.Interop;
+using NMP_Quoting_System.ViewModels;
 
 namespace NMP_Quoting_System
 {
@@ -25,6 +26,8 @@ namespace NMP_Quoting_System
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.logoPanel.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+
+            DataContext = new MainViewModel();
 
         }
 
@@ -51,6 +54,22 @@ namespace NMP_Quoting_System
         {
             if (this.WindowState == WindowState.Maximized) this.BorderThickness = new System.Windows.Thickness(8);
             else this.BorderThickness = new System.Windows.Thickness(0);
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

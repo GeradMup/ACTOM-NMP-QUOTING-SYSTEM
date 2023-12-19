@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NMP_Quoting_System"
+			 xmlns:views="clr-namespace:NMP_Quoting_System.Views"
+			 xmlns:viewmodels="clr-namespace:NMP_Quoting_System.ViewModels"
              StartupUri="Views\MainWindow.xaml">
 	<Application.Resources>
 		<ResourceDictionary>
@@ -9,6 +11,15 @@
 				<ResourceDictionary Source="/Styles/UIColours.xaml"/>
 				<ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
+
+			<DataTemplate DataType="{x:Type viewmodels:NavigationViewModel}">
+				<views:NavigationView/>
+			</DataTemplate>
+
+			<DataTemplate DataType="{x:Type viewmodels:GearBoxSelectionViewModel}">
+				<views:GearBoxSelectionView/>
+			</DataTemplate>
+			
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

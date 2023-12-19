@@ -22,7 +22,9 @@
 	<SolidColorBrush x:Key="colour8" Color="#78A3FC"/>
 	<SolidColorBrush x:Key="colour9" Color="#07F3C0"/>
 	<SolidColorBrush x:Key="colour10" Color="#FBA1AA"/>
-	
+	<SolidColorBrush x:Key="colour11" Color="#000000"/>
+	<SolidColorBrush x:Key="actomBlue" Color="#006CB7"/>
+
 	<!-- Font Colours -->
 	<SolidColorBrush x:Key="titleColour1" Color="#006CB7"/>
 	<SolidColorBrush x:Key="titleColour2" Color="#FFFFFF"/>
@@ -42,5 +44,6 @@
 	<SolidColorBrush x:Key="buttonColour2" Color="#19D022"/>
 	<SolidColorBrush x:Key="buttonColour3" Color="#000000"/>
 	<SolidColorBrush x:Key="buttonColour1Hover" Color="#1E33E5"/>
+	<SolidColorBrush x:Key="buttonColour2Hover" Color="#cccdcf"/>
 
 </ResourceDictionary>
