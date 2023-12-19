@@ -68,5 +68,13 @@ namespace NMP_Quoting_System
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            int nWidth = (int)System.Windows.SystemParameters.PrimaryScreenWidth;
+            int nHeight = (int)System.Windows.SystemParameters.PrimaryScreenHeight;
+
+            this.LayoutTransform = new ScaleTransform(nWidth / 1920, nHeight / 1080);
+        }
     }
 }

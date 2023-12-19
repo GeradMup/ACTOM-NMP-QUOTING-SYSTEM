@@ -71,5 +71,9 @@
 		<Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
 		<Setter Property="Width" Value="15"/>
 	</Style>
-	
+
+	<Style x:Key="homeButtonIcon" TargetType="fa:IconImage">
+		<Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+	</Style>
+
 </ResourceDictionary>

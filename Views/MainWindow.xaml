@@ -8,22 +8,16 @@
 		xmlns:viewModel="clr-namespace:NMP_Quoting_System.ViewModels"
 		mc:Ignorable="d"
         Title="MainWindow" 
-		Height="600" 
-		Width="1000"
+		Height="800" 
+		Width="1200"
 		WindowStartupLocation="CenterScreen"
 		WindowStyle="None"
 		ResizeMode="CanResize"
 		Background="Transparent"
 		AllowsTransparency="True"
-		SizeChanged="Window_SizeChanged">
+		SizeChanged="Window_SizeChanged"
+		Loaded="Window_Loaded">
 
-<!--
-		<Window.DataContext>
-			<viewModel:MainViewModel/>
-		</Window.DataContext>
--->
-	
-	
 	<!--Here we define the main border for the whole page-->
 	<Border CornerRadius="1"
 			BorderThickness="3"
@@ -36,13 +30,14 @@
 				<GradientStop Color="{StaticResource winBorderColour3}" Offset="1.0"/>
 			</LinearGradientBrush>
 		</Border.BorderBrush>
-	
+
 
 		<Grid Background="{StaticResource colour1}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="30"/>
 				<RowDefinition Height="0.9*"/>
-				<RowDefinition Height="0.14*"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="78"/>
 			</Grid.RowDefinitions>
 
 			<!--Here we add all the controls that will allow the app to behave like a normal windows app-->
@@ -73,7 +68,7 @@
 				</Button>
 
 			</StackPanel>
-			
+
 			<!--###########################################################################################-->
 			<!--THIS SECTION WILL BE USED TO DEFINE ALL THE CHILD VIEWS THAT WILL GO ON THE PAGE-->
 
@@ -84,7 +79,36 @@
 			<!--THIS SECTION WILL BE USED TO DEFINE ALL THE CHILD VIEWS THAT WILL GO ON THE PAGE-->
 			<!--###########################################################################################-->
 
-			<StackPanel x:Name="logoPanel" Grid.Row="2" 
+			<Button Grid.Row="2" Command="{Binding homeBtnCommand}">
+				<Button.Style>
+					<Style TargetType="{x:Type Button}">
+						<Setter Property="Background" Value="Transparent"/>
+						<Setter Property="Foreground" Value="#484848"/>
+						<Setter Property="Margin" Value="15,0,0,0"/>
+						<Setter Property="HorizontalAlignment" Value="Left"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type Button}">
+									<Border Background="{TemplateBinding Background}">
+										<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+									</Border>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Foreground" Value="Black"/>
+								<Setter Property="Cursor" Value="Hand"/>
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Button.Style>
+
+				<fa:IconImage Icon="Home" Style="{StaticResource homeButtonIcon}"
+							  HorizontalAlignment="Left"/>
+			</Button>
+
+			<StackPanel x:Name="logoPanel" Grid.Row="3" 
 						VerticalAlignment="Bottom" HorizontalAlignment="Center"
 						>
 				<!--This places the Logo at the bottom of the screen-->
@@ -96,9 +120,6 @@
 			</StackPanel>
 
 		</Grid>
-		
-		
-
 	</Border>
 	
 </Window>

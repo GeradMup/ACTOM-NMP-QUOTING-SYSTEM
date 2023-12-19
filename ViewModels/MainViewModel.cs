@@ -15,11 +15,17 @@ namespace NMP_Quoting_System.ViewModels
     {
 
         [ObservableProperty]
-        private INavigationService? _navigation;
+        private INavigationService _navigation;
 
         public MainViewModel(INavigationService navService)
         {
             Navigation = navService;
+            Navigation.NavigateTo<NavigationViewModel>();
+        }
+
+        [RelayCommand]
+        public void homeBtn() 
+        {
             Navigation.NavigateTo<NavigationViewModel>();
         }
 
