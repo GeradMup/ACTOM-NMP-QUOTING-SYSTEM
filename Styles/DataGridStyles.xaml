@@ -35,7 +35,7 @@
 		<Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
 		<Setter Property="ScrollViewer.PanningMode" Value="Both"/>
 		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-		<Setter Property="Margin" Value="20,0,1,10"/>
+		<Setter Property="Margin" Value="0,0,1,0"/>
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="Template">
 			<Setter.Value>
@@ -100,6 +100,32 @@
 		</Setter>
 	</Style>
 	
+	<SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
+	
+	<Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<!--Setter Property="HorizontalAlignment" Value="Center"/-->
+		<!--Setter Property="FontFamily" Value="Calibri"/-->
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="Foreground" Value="Black"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type DataGridCell}">
+					<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+						<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="IsSelected" Value="True">
+				<Setter Property="Background" Value="Yellow"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
 	<Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -152,4 +178,6 @@
 	<Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 	</Style>
+	
+	
 </ResourceDictionary>
