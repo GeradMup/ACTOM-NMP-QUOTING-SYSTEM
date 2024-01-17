@@ -14,5 +14,11 @@ namespace NMP_Quoting_System.ViewModels
         {
 
         }
+
+        /// <summary>
+        /// Function for resetting ViewModels.
+        /// Function is declared as virtual because some child classes may not override this method!
+        /// </summary>
+        public virtual void ResetViewModel() { }
     }
 }

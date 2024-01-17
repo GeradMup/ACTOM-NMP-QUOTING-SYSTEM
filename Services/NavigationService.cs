@@ -16,18 +16,6 @@ namespace NMP_Quoting_System.Services
         [ObservableProperty]
         private BaseViewModel? _currentViewModel;
 
-        /*      THIS PART SHOULD BE HANDLED BY THE MVVM COMMUNITY TOOLKIT
-                public BaseViewModel CurrentViewModel 
-                {
-                    get => _currentViewModel;
-                    private set 
-                    {
-                        _currentViewModel = value;
-                    }
-                }
-
-                */
-
         public NavigationService(Func<Type, BaseViewModel> viewModelFactory)
         {
             this.viewModelFactory = viewModelFactory;
@@ -36,6 +24,7 @@ namespace NMP_Quoting_System.Services
         public void NavigateTo<TBaseViewModel>() where TBaseViewModel : BaseViewModel 
         {
             BaseViewModel viewModel = viewModelFactory.Invoke(typeof(TBaseViewModel));
+            viewModel.ResetViewModel();
             CurrentViewModel = viewModel;
         }
     }

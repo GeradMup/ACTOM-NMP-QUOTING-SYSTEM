@@ -1,8 +1,11 @@
 ﻿using NMP_Quoting_System.Models;
+using NMP_Quoting_System.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,72 +18,51 @@ namespace NMP_Quoting_System.Services
     public class GearboxSelectionService
     {
 
-        public ObservableCollection<ARWGearbox> arwGearboxes;
+        public IEnumerable<ARWGearbox>? arwGearboxes;
         public IEnumerable<ARWGearbox>? sameTypeGearboxes;
         public IEnumerable<ARWGearbox>? sameRatingGearboxes;
         public IEnumerable<ARWGearbox>? samePolesGearboxes;
         public IEnumerable<ARWGearbox>? sameFinalRpmGearboxes;
-        public List<String> gearboxTypes;
+        public List<String?>? gearboxTypes;
 
         public GearboxSelectionService()
         {
             arwGearboxes = new ObservableCollection<ARWGearbox>();
 
-            ARWGearbox arwGearbox = new ARWGearbox(0.18, "ARW", 30, 7.5, 2, 1400, 187, 7.7, 14, 2.3);
-            ARWGearbox arwGearbox2 = new ARWGearbox(0.15, "ARW", 30, 10, 2, 1400, 140, 10, 14, 1.8);
-            ARWGearbox arwGearbox3 = new ARWGearbox(0.16, "ARW", 30, 15, 6, 1400, 94, 14, 14, 1.3);
-            ARWGearbox arwGearbox4 = new ARWGearbox(0.18, "ARW", 40, 15, 2, 1400, 94, 15, 18, 2.9);
-            ARWGearbox arwGearbox5 = new ARWGearbox(0.15, "ARW", 30, 20, 4, 1400, 70, 18, 14, 1);
-            ARWGearbox arwGearbox6 = new ARWGearbox(0.16, "ARW", 40, 20, 6, 1400, 70, 19, 18, 2.1);
-            ARWGearbox arwGearbox7 = new ARWGearbox(0.18, "ARW", 30, 25, 2, 1400, 56, 20, 14, 1);
-            ARWGearbox arwGearbox8 = new ARWGearbox(0.15, "ARW", 40, 25, 4, 1400, 56, 23, 18, 1.7);
-            ARWGearbox arwGearbox9 = new ARWGearbox(0.16, "ARW", 40, 30, 6, 1400, 47, 25, 18, 1.8);
-            ARWGearbox arwGearbox10 = new ARWGearbox(0.18, "ARW", 40, 40, 2, 1400, 35, 32, 18, 1.3);
-            ARWGearbox arwGearbox11 = new ARWGearbox(0.15, "ARW", 50, 40, 6, 1400, 35, 33, 25, 2.3);
-            ARWGearbox arwGearbox12 = new ARWGearbox(0.16, "ARW", 40, 50, 6, 1400, 28, 37, 18, 1);
-            ARWGearbox arwGearbox13 = new ARWGearbox(0.18, "ARW", 50, 50, 2, 1400, 28, 39, 25, 1.9);
-            ARWGearbox arwGearbox14 = new ARWGearbox(0.15, "ARW", 50, 60, 4, 1400, 24, 43, 25, 1.6);
-            ARWGearbox arwGearbox15 = new ARWGearbox(0.16, "TRC", 50, 80, 6, 1400, 18, 52, 25, 1.2);
-            ARWGearbox arwGearbox16 = new ARWGearbox(0.18, "TRC", 40, 30, 2, 1400, 47, 25, 18, 1.8);
-            ARWGearbox arwGearbox17 = new ARWGearbox(0.15, "TRC", 40, 40, 4, 1400, 35, 32, 18, 1.3);
-            ARWGearbox arwGearbox18 = new ARWGearbox(0.16, "TRC", 50, 40, 6, 1400, 35, 33, 25, 2.3);
-            ARWGearbox arwGearbox19 = new ARWGearbox(0.18, "TRC", 40, 50, 2, 1400, 28, 37, 18, 1);
-            ARWGearbox arwGearbox20 = new ARWGearbox(0.15, "TRC", 50, 50, 4, 1400, 28, 39, 25, 1.9);
-            ARWGearbox arwGearbox21 = new ARWGearbox(0.16, "TRC", 50, 60, 6, 1400, 24, 43, 25, 1.6);
-            ARWGearbox arwGearbox22 = new ARWGearbox(0.18, "TRC", 50, 80, 2, 1400, 18, 52, 25, 1.2);
+            TextFilesService textFilesService = new TextFilesService();
+            Paths? paths = TextFilesService.GetProgramPaths();
+            arwGearboxes = new List<ARWGearbox>();
 
-            arwGearboxes.Add(arwGearbox);
-            arwGearboxes.Add(arwGearbox2);
-            arwGearboxes.Add(arwGearbox3);
-            arwGearboxes.Add(arwGearbox4);
-            arwGearboxes.Add(arwGearbox5);
-            arwGearboxes.Add(arwGearbox6);
-            arwGearboxes.Add(arwGearbox7);
-            arwGearboxes.Add(arwGearbox8);
-            arwGearboxes.Add(arwGearbox9);
-            arwGearboxes.Add(arwGearbox10);
-            arwGearboxes.Add(arwGearbox11);
-            arwGearboxes.Add(arwGearbox12);
-            arwGearboxes.Add(arwGearbox13);
-            arwGearboxes.Add(arwGearbox14);
-            arwGearboxes.Add(arwGearbox15);
-            arwGearboxes.Add(arwGearbox16);
-            arwGearboxes.Add(arwGearbox17);
-            arwGearboxes.Add(arwGearbox18);
-            arwGearboxes.Add(arwGearbox19);
-            arwGearboxes.Add(arwGearbox20);
-            arwGearboxes.Add(arwGearbox21);
-            arwGearboxes.Add(arwGearbox22);
+            if (paths == null)
+            {
+                //Here we need to report an error
+            }
+            else
+            {
+                string[] allFiles = Directory.GetFiles(paths.GearboxOptions, "*.csv");
 
-            //Here we are trying to obtain a list of unique names from the list of the list of Gearboxes
-            gearboxTypes = arwGearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
+                foreach (string file in allFiles) {
+                    IEnumerable<ARWGearbox> gearboxes = File.ReadAllLines(file)
+                                                        .Skip(1)
+                                                        .Select(v => ARWGearbox.FromCSV(v))
+                                                        .ToList();
+
+                    arwGearboxes = arwGearboxes.Concat(gearboxes);
+                }
+            }
+
+            if (arwGearboxes != null) { 
+                //Here we are trying to obtain a list of unique names from the list of the list of Gearboxes
+                gearboxTypes = arwGearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
+            }
         }
+
 
         /// <summary>
         /// Returns a List of strings containing the names of all the available gearbox types
         /// </summary>
         /// <returns>List of strings</returns>
-        public List<String> GetGearboxTypes()
+        public List<String?>? GetGearboxTypes()
         {
 
             return gearboxTypes;
@@ -165,14 +147,34 @@ namespace NMP_Quoting_System.Services
             return gearbox.FinalRpm;
         }
 
+
+        /// <summary>
+        /// Gets gear boxes that match the required ratio. 
+        /// This function looks at the list that only has the same number of poles.
+        /// </summary>
+        /// <param name="gearRatio">double</param>
+        /// <returns>IEnumerable<ARWGearbox></returns>
         public IEnumerable<ARWGearbox> GetGearboxes(double? gearRatio) 
         {
             return samePolesGearboxes.Where(gearbox => gearbox.Ratio == gearRatio);
         }
 
-        public ObservableCollection<ARWGearbox> GetGearboxes() 
+        public void SelectedGearBox(ARWGearbox selectedGearbox)  
         {
-            return arwGearboxes;
+            //return arwGearboxes;
+        }
+
+        public void Reset() 
+        {
+            sameTypeGearboxes = null;
+            sameFinalRpmGearboxes = null;
+            samePolesGearboxes = null;
+            sameRatingGearboxes = null;
+            if (arwGearboxes != null)
+            {
+                //Here we are trying to obtain a list of unique names from the list of the list of Gearboxes
+                gearboxTypes = arwGearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
+            }
         }
     }
 }
