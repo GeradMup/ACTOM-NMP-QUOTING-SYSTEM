@@ -34,6 +34,11 @@ namespace NMP_Quoting_System.Services
             return lines;
         }
 
+        /// <summary>
+        /// Reads the file that contains program data and returns an array of all the paths. 
+        /// It's up to the programmer to determine which path is a which index!
+        /// </summary>
+        /// <returns>string[]</returns>
         public static Paths? GetProgramPaths()
         {
             string[]? paths = ReadTextFile(ProgramConstants.PROGRAM_PATHS);

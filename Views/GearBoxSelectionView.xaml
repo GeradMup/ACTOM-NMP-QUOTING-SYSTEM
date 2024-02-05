@@ -235,7 +235,7 @@
 						BorderThickness="1" Margin="20,20,20,0">
 					
 						<DataGrid CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-								  ItemsSource="{Binding ARWGearboxes}"
+								  ItemsSource="{Binding Gearboxes}"
 								  x:Name="GearboxOptions"
 								  AutoGenerateColumns="False"
 								  IsReadOnly="True"

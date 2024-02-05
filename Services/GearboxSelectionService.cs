@@ -1,5 +1,6 @@
 ﻿using NMP_Quoting_System.Models;
 using NMP_Quoting_System.ViewModels;
+using PDF_GEN;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,20 +19,23 @@ namespace NMP_Quoting_System.Services
     public class GearboxSelectionService
     {
 
-        public IEnumerable<ARWGearbox>? arwGearboxes;
-        public IEnumerable<ARWGearbox>? sameTypeGearboxes;
-        public IEnumerable<ARWGearbox>? sameRatingGearboxes;
-        public IEnumerable<ARWGearbox>? samePolesGearboxes;
-        public IEnumerable<ARWGearbox>? sameFinalRpmGearboxes;
-        public List<String?>? gearboxTypes;
+        public IEnumerable<Gearbox>? Gearboxes;
+        public IEnumerable<Gearbox>? sameTypeGearboxes;
+        public IEnumerable<Gearbox>? sameRatingGearboxes;
+        public IEnumerable<Gearbox>? samePolesGearboxes;
+        public IEnumerable<Gearbox>? sameFinalRpmGearboxes;
+        public List<String>? gearboxTypes;
+
+        private GearboxQuote gearboxQuote;
 
         public GearboxSelectionService()
         {
-            arwGearboxes = new ObservableCollection<ARWGearbox>();
+            gearboxQuote = new GearboxQuote();
+            Gearboxes = new ObservableCollection<Gearbox>();
 
             TextFilesService textFilesService = new TextFilesService();
             Paths? paths = TextFilesService.GetProgramPaths();
-            arwGearboxes = new List<ARWGearbox>();
+            Gearboxes = new List<Gearbox>();
 
             if (paths == null)
             {
@@ -42,18 +46,18 @@ namespace NMP_Quoting_System.Services
                 string[] allFiles = Directory.GetFiles(paths.GearboxOptions, "*.csv");
 
                 foreach (string file in allFiles) {
-                    IEnumerable<ARWGearbox> gearboxes = File.ReadAllLines(file)
+                    IEnumerable<Gearbox> gearboxes = File.ReadAllLines(file)
                                                         .Skip(1)
-                                                        .Select(v => ARWGearbox.FromCSV(v))
+                                                        .Select(v => Gearbox.FromCSV(v))
                                                         .ToList();
 
-                    arwGearboxes = arwGearboxes.Concat(gearboxes);
+                    Gearboxes = Gearboxes.Concat(gearboxes);
                 }
             }
 
-            if (arwGearboxes != null) { 
+            if (Gearboxes != null) { 
                 //Here we are trying to obtain a list of unique names from the list of the list of Gearboxes
-                gearboxTypes = arwGearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
+                gearboxTypes = Gearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
             }
         }
 
@@ -62,7 +66,7 @@ namespace NMP_Quoting_System.Services
         /// Returns a List of strings containing the names of all the available gearbox types
         /// </summary>
         /// <returns>List of strings</returns>
-        public List<String?>? GetGearboxTypes()
+        public List<String>? GetGearboxTypes()
         {
 
             return gearboxTypes;
@@ -76,7 +80,7 @@ namespace NMP_Quoting_System.Services
         public List<double> GetGearboxRatings(string type)
         {
             //Filter the list to get only the type required then get only unique power ratings from the filtered list.
-            sameTypeGearboxes = arwGearboxes.Where(gearbox => gearbox.Type == type);
+            sameTypeGearboxes = Gearboxes.Where(gearbox => gearbox.Type == type);
             List<double> gearboxRatings = sameTypeGearboxes.Select(gearbox => gearbox.Rating).Distinct().ToList();
             gearboxRatings.Sort();  //Sorting in ascending order.
             return gearboxRatings;
@@ -131,7 +135,7 @@ namespace NMP_Quoting_System.Services
         public double GetGearRatio(double? finalRpm, int? poles) 
         {
 
-            ARWGearbox gearbox = samePolesGearboxes.First(gearbox => (gearbox.Poles == poles && gearbox.FinalRpm == finalRpm));
+            Gearbox gearbox = samePolesGearboxes.First(gearbox => (gearbox.Poles == poles && gearbox.FinalRpm == finalRpm));
             return gearbox.Ratio;
         }
 
@@ -143,7 +147,7 @@ namespace NMP_Quoting_System.Services
         /// <returns>double</returns>
         public double GetFinalRpm(double? gearRatio, int? poles) 
         {
-            ARWGearbox gearbox = samePolesGearboxes.First(gearbox => (gearbox.Poles == poles && gearbox.Ratio == gearRatio));
+            Gearbox gearbox = samePolesGearboxes.First(gearbox => (gearbox.Poles == poles && gearbox.Ratio == gearRatio));
             return gearbox.FinalRpm;
         }
 
@@ -153,15 +157,19 @@ namespace NMP_Quoting_System.Services
         /// This function looks at the list that only has the same number of poles.
         /// </summary>
         /// <param name="gearRatio">double</param>
-        /// <returns>IEnumerable<ARWGearbox></returns>
-        public IEnumerable<ARWGearbox> GetGearboxes(double? gearRatio) 
+        /// <returns>IEnumerable<Gearbox></returns>
+        public IEnumerable<Gearbox> GetGearboxes(double? gearRatio) 
         {
             return samePolesGearboxes.Where(gearbox => gearbox.Ratio == gearRatio);
         }
 
-        public void SelectedGearBox(ARWGearbox selectedGearbox)  
+        public void SelectedGearBox(Gearbox selectedGearbox)  
         {
-            //return arwGearboxes;
+            Dimensions dimensions = new Dimensions(56, 100, 40, 11);
+            Lubricant lubricant = new Lubricant("Shell", "Synthetic", "VG31", 0.05);
+            User user = new User("Jane Goldwyer", "Central Sales Manager");
+            gearboxQuote.generateQuote(selectedGearbox, dimensions, lubricant, user);
+            //return Gearboxes;
         }
 
         public void Reset() 
@@ -170,10 +178,10 @@ namespace NMP_Quoting_System.Services
             sameFinalRpmGearboxes = null;
             samePolesGearboxes = null;
             sameRatingGearboxes = null;
-            if (arwGearboxes != null)
+            if (Gearboxes != null)
             {
                 //Here we are trying to obtain a list of unique names from the list of the list of Gearboxes
-                gearboxTypes = arwGearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
+                gearboxTypes = Gearboxes.GroupBy(gearbox => gearbox.Type).Select(gearbox => gearbox.First().Type).ToList();
             }
         }
     }

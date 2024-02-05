@@ -8,9 +8,9 @@ using System.Windows.Markup;
 
 namespace NMP_Quoting_System.Models
 {
-    public class ARWGearbox
+    public class Gearbox
     {
-        public ARWGearbox(
+        public Gearbox(
             double rating = 0, 
             string? type = null, 
             double number = 0, 
@@ -52,10 +52,10 @@ namespace NMP_Quoting_System.Models
         public string? Spec { get; set; }
 
 
-        public static ARWGearbox FromCSV(string csvLine) 
+        public static Gearbox FromCSV(string csvLine) 
         {
             string[] lines = csvLine.Split(',');
-            ARWGearbox gearbox = new();
+            Gearbox gearbox = new();
             gearbox.Rating = Double.Parse(lines[0]);
             gearbox.Type = lines[1].Trim();
             gearbox.Number = Double.Parse(lines[2]);

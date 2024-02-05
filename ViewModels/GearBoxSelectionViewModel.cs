@@ -15,7 +15,7 @@ namespace NMP_Quoting_System.ViewModels
     {
 
         [ObservableProperty]
-        public ObservableCollection<ARWGearbox>? _ARWGearboxes;
+        public ObservableCollection<Gearbox>? _Gearboxes;
 
         [ObservableProperty]
         public ObservableCollection<String>? _GearboxTypes;
@@ -48,14 +48,16 @@ namespace NMP_Quoting_System.ViewModels
         public double? _SelectedGearRatio;
 
         [ObservableProperty]
-        public ARWGearbox? _SelectedGearboxOption;
+        public Gearbox? _SelectedGearboxOption;
 
         GearboxSelectionService? gearboxSelectionService;
         
         public GearBoxSelectionViewModel()
         {
             gearboxSelectionService = new GearboxSelectionService();
+#pragma warning disable CS8604 // Possible null reference argument.
             GearboxTypes = new ObservableCollection<string>(gearboxSelectionService.GetGearboxTypes());
+#pragma warning restore CS8604 // Possible null reference argument.
         }
 
         [RelayCommand]
@@ -66,7 +68,7 @@ namespace NMP_Quoting_System.ViewModels
             SelectedPoles = null;
             SelectedFinalRpm = null;
             SelectedGearRatio = null;
-            ARWGearboxes = null;
+            Gearboxes = null;
             if (GearboxRatings != null) GearboxRatings.Clear();
             GearboxRatings = new ObservableCollection<double>(gearboxSelectionService.GetGearboxRatings(SelectedGearboxType));
         }
@@ -78,7 +80,7 @@ namespace NMP_Quoting_System.ViewModels
             SelectedPoles = null;
             SelectedFinalRpm = null;
             SelectedGearRatio = null;
-            ARWGearboxes = null;
+            Gearboxes = null;
             Poles = new ObservableCollection<int>(gearboxSelectionService.GetPoles(SelectedRating));
         }
 
@@ -88,7 +90,7 @@ namespace NMP_Quoting_System.ViewModels
             if(SelectedPoles == null) { return; }
             SelectedFinalRpm = null;
             SelectedGearRatio = null;
-            ARWGearboxes = null;
+            Gearboxes = null;
             FinalRpms = new ObservableCollection<double>(gearboxSelectionService.GetFinalRpms(SelectedPoles));
             GearRatios = new ObservableCollection<double>(gearboxSelectionService.GetGearRatios(SelectedPoles));
         }
@@ -99,7 +101,7 @@ namespace NMP_Quoting_System.ViewModels
         {
             if (SelectedFinalRpm == null || SelectedPoles == null) { return; }
             SelectedGearRatio = gearboxSelectionService.GetGearRatio(SelectedFinalRpm, SelectedPoles);
-            ARWGearboxes = new ObservableCollection<ARWGearbox>(gearboxSelectionService.GetGearboxes(SelectedGearRatio));
+            Gearboxes = new ObservableCollection<Gearbox>(gearboxSelectionService.GetGearboxes(SelectedGearRatio));
         }
 
         [RelayCommand]
@@ -107,7 +109,7 @@ namespace NMP_Quoting_System.ViewModels
         {
             if (SelectedGearRatio == null || SelectedPoles == null) { return; }
             SelectedFinalRpm = gearboxSelectionService.GetFinalRpm(SelectedGearRatio, SelectedPoles);
-            ARWGearboxes = new ObservableCollection<ARWGearbox>(gearboxSelectionService.GetGearboxes(SelectedGearRatio));
+            Gearboxes = new ObservableCollection<Gearbox>(gearboxSelectionService.GetGearboxes(SelectedGearRatio));
         }
 
         [RelayCommand]
@@ -122,11 +124,11 @@ namespace NMP_Quoting_System.ViewModels
 
         public override void ResetViewModel() 
         {
-            GearboxRatings = null;
-            Poles = null;
-            FinalRpms = null;
-            GearRatios = null;
-            GearboxTypes = null;
+            SelectedRating = null;
+            SelectedPoles = null;
+            SelectedFinalRpm = null;
+            SelectedGearRatio = null;
+            SelectedGearboxType = null;
             gearboxSelectionService.Reset();
             GearboxTypes = new ObservableCollection<string>(gearboxSelectionService.GetGearboxTypes());
         }
